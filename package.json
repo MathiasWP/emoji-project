@@ -1,0 +1,42 @@
+{
+  "name": "project-emoji",
+  "version": "1.0.0",
+  "description": "The Emoji Project.",
+  "main": "index.js",
+  "scripts": {
+    "babel:js": "babel ./public/emojiscript.js --out-dir ./public/min.js",
+    "min:js": "terser ./public/min.js/emojiscript.js --compress --mangle -o ./public/min.js/emojiscript.min.js",
+    "build:js": "npm-run-all babel:js min:js webpack",
+    "concat:css": "concat -o ./public/min.css/style.concat.css ./public/emoji-style.css",
+    "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' ./public/min.css/style.concat.css -o ./public/min.css/style.prefix.css",
+    "compress:css": "node-sass ./public/min.css/style.prefix.css ./public/min.css/style.min.css --output-style compressed",
+    "build:css": "npm-run-all concat:css prefix:css compress:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MathiasWP/emoji-project.git"
+  },
+  "keywords": [
+    "Emoji"
+  ],
+  "author": "Mathias Picker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MathiasWP/emoji-project/issues"
+  },
+  "homepage": "https://github.com/MathiasWP/emoji-project#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/runtime": "^7.9.6",
+    "autoprefixer": "^9.7.6",
+    "babel-loader": "^8.1.0",
+    "concat": "^1.0.3",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.1",
+    "webpack": "^4.43.0"
+  }
+}

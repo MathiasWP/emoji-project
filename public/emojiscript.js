@@ -130,10 +130,6 @@
   document.querySelector("#all-emojis").addEventListener("click", (e) => {
     if (e.target.className !== "emoji-in-showcase") return;
 
-    /**
-     * HERE I CANNOT UNDERSTAND WHAT'S WRONG
-     */
-
     activeEmoji = EMOJIS.find(
       (emoji) =>
         emoji.name.toLowerCase() === e.target.id.split("_").join(" ").split("--").join("’").toLowerCase()
