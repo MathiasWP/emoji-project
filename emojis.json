@@ -6208,11 +6208,11 @@
     "name": "T-Rex",
     "category": "Animals & Nature",
     "aliases": ["t-rex"],
-    "tags": [],
-    "languages": [],
+    "tags": ["HTML", "JavaScript", "p5.js", "Canvas", "Game"],
+    "languages": ["HTML", "JavaScript"],
     "difficulty": "medium",
-    "project_description": "",
-    "project_tips": ""
+    "project_description": "Create the Google Chrome dinosaur game from scratch.",
+    "project_tips": "Use the p5.js library."
   },
   {
     "emoji": "🐳",
@@ -6890,11 +6890,11 @@
     "name": "eggplant",
     "category": "Food & Drink",
     "aliases": ["eggplant"],
-    "tags": [],
-    "languages": [],
-    "difficulty": "medium",
-    "project_description": "",
-    "project_tips": ""
+    "tags": ["HTML", "CSS", "JavaScript", "Dimensions", "Responsive"],
+    "languages": ["HTML", "CSS", "JavaScript"],
+    "difficulty": "easy",
+    "project_description": "Code a website that measures the length and width of the browser window. Display the dimensions using cm or inches in a cool way - and remember to make it responsive! Extra challenge: Can you find a clever way to utilize the max/min-width property in CSS instead of using JavaScript?",
+    "project_tips": "Don't overthink."
   },
   {
     "emoji": "🥔",
@@ -18463,11 +18463,11 @@
     "name": "Sweden",
     "category": "Flags",
     "aliases": ["sweden"],
-    "tags": [],
-    "languages": [],
-    "difficulty": "medium",
-    "project_description": "",
-    "project_tips": ""
+    "tags": ["HTML", "JavaScript", "String", "Array", "Parsing"],
+    "languages": ["HTML", "JavaScript"],
+    "difficulty": "easy",
+    "project_description": "Create a website that takes in text-input from the user and returns it in The Robber Language.",
+    "project_tips": "Google Rövarspråket."
   },
   {
     "emoji": "🇸🇬",

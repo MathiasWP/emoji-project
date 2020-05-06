@@ -78,9 +78,6 @@
   emojiShowcase.render();
 
   const emojiComponent = new Reef("#emoji-result", {
-    data: {
-      emoji: activeEmoji,
-    },
     template: function (props) {
       return `
     <div class="emoji-result-component">
@@ -103,6 +100,9 @@
   </div>
     `;
     },
+    data: {
+      emoji: { ...activeEmoji },
+    },
   });
 
   emojiComponent.render();
@@ -110,11 +110,10 @@
   const searchComponent = new Reef(".search-engine", {
     template: function (props) {
       return `
-      <input list="search-input" name="search-input" id="emoji-search" placeholder="Type in any emoji here...">
+      <input list="search-input" name="search-input" id="emoji-search" placeholder="Search for emojis...">
       <datalist id="search-input">
       ${props.emojis.map((emoji) => `<option value="${emoji.name}" tabindex="0">`).join("")}
       </datalist>
-      
       <button>🔍</button>`;
     },
     data: {
@@ -135,13 +134,10 @@
      * HERE I CANNOT UNDERSTAND WHAT'S WRONG
      */
 
-    console.log(e.target.id);
     activeEmoji = EMOJIS.find(
       (emoji) =>
         emoji.name.toLowerCase() === e.target.id.split("_").join(" ").split("--").join("’").toLowerCase()
     );
-
-    console.log(activeEmoji);
 
     Object.assign(emojiComponent.data.emoji, activeEmoji);
 
@@ -168,6 +164,9 @@
   document.querySelector("#all-emojis").addEventListener("keydown", (e) => {
     if (e.target.className !== "emoji-in-showcase") return;
 
+    const horisontalStep = 1;
+    const verticalStep = 9;
+
     switch (e.key) {
       case "Tab":
         activeEmoji = EMOJIS.find(
@@ -183,43 +182,60 @@
           (emoji) =>
             emoji.name.toLowerCase() === e.target.id.split("_").join(" ").split("--").join("’").toLowerCase()
         );
-        Object.assign(emojiComponent.data.emoji, activeEmoji);
-        location.hash = activeEmoji.name;
         break;
       case "ArrowRight":
-        const emojiToRight = EMOJIS[EMOJIS.indexOf(activeEmoji) + 1];
-        if (!emojiToRight) return;
-        Object.assign(emojiComponent.data.emoji, emojiToRight);
-        location.hash = emojiToRight.name;
-        activeEmoji = emojiToRight;
-        focusEmoji(activeEmoji);
+        if (e.metaKey || e.ctrlKey) {
+          e.preventDefault();
+        }
+        let emojiRight =
+          e.metaKey || e.ctrlKey
+            ? EMOJIS[EMOJIS.indexOf(activeEmoji) + horisontalStep * 10]
+            : EMOJIS[EMOJIS.indexOf(activeEmoji) + horisontalStep];
+        if (!emojiRight) {
+          emojiRight = EMOJIS[EMOJIS.length - 1];
+        }
+        activeEmoji = emojiRight;
         break;
       case "ArrowLeft":
-        const emojiLeft = EMOJIS[EMOJIS.indexOf(activeEmoji) - 1];
-        if (!emojiLeft) return;
-        Object.assign(emojiComponent.data.emoji, emojiLeft);
-        location.hash = emojiLeft.name;
+        if (e.metaKey || e.ctrlKey) {
+          e.preventDefault();
+        }
+        let emojiLeft =
+          e.metaKey || e.ctrlKey
+            ? EMOJIS[EMOJIS.indexOf(activeEmoji) - horisontalStep * 10]
+            : EMOJIS[EMOJIS.indexOf(activeEmoji) - horisontalStep];
+        if (!emojiLeft) {
+          emojiLeft = EMOJIS[0];
+        }
         activeEmoji = emojiLeft;
-        focusEmoji(activeEmoji);
         break;
       case "ArrowDown":
         e.preventDefault();
-        const emojiDown = EMOJIS[EMOJIS.indexOf(activeEmoji) + 9];
-        if (!emojiDown) return;
-        Object.assign(emojiComponent.data.emoji, emojiDown);
-        location.hash = emojiDown.name;
+        let emojiDown =
+          e.metaKey || e.ctrlKey
+            ? EMOJIS[EMOJIS.indexOf(activeEmoji) + verticalStep * 10]
+            : EMOJIS[EMOJIS.indexOf(activeEmoji) + verticalStep];
+        if (!emojiDown) {
+          emojiDown = EMOJIS[EMOJIS.length - ((EMOJIS.length - EMOJIS.indexOf(activeEmoji)) % 9)];
+        }
         activeEmoji = emojiDown;
-        focusEmoji(activeEmoji);
         break;
       case "ArrowUp":
         e.preventDefault();
-        const emojiUp = EMOJIS[EMOJIS.indexOf(activeEmoji) - 9];
-        if (!emojiUp) return;
-        Object.assign(emojiComponent.data.emoji, emojiUp);
-        location.hash = emojiUp.name;
+        let emojiUp =
+          e.metaKey || e.ctrlKey
+            ? EMOJIS[EMOJIS.indexOf(activeEmoji) - verticalStep * 10]
+            : EMOJIS[EMOJIS.indexOf(activeEmoji) - verticalStep];
+        if (!emojiUp) {
+          emojiUp = EMOJIS[EMOJIS.indexOf(activeEmoji) % 9];
+        }
         activeEmoji = emojiUp;
-        focusEmoji(activeEmoji);
         break;
+    }
+    if (e.key !== "Tab") {
+      Object.assign(emojiComponent.data.emoji, activeEmoji);
+      location.hash = activeEmoji.name;
+      focusEmoji(activeEmoji);
     }
   });
 

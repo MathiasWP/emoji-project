@@ -144,8 +144,11 @@ html {
 
 #all-emojis {
   margin: 1rem 0;
+  padding-right: 1rem;
   height: 100%;
   overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
 }
 
 #emoji-showcase .emoji-in-showcase {
@@ -207,9 +210,10 @@ html {
   margin-top: 5rem;
 }
 
-#rendered-with {
+#gh-repo {
   position: fixed;
   right: 0.75rem;
   bottom: 0.75rem;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
+  color: #000000;
 }
