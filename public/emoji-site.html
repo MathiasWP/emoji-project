@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Emoji Project.</title>
+    <link rel="icon" type="favicon" sizes="32x32" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="emoji-style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/reefjs@7/dist/reef.min.js" defer></script>
+    <script src="emojiscript.js" defer></script>
+  </head>
+  <body>
+    <div id="emoji-frontpage">
+      Welcome to the emoji project.
+      <button id="let-me-browse" class="transparent">Let me browse ❤️</button>
+      <a
+        tabindex="0"
+        href="https://github.com/MathiasWP/emoji-project"
+        target="_blank"
+        rel="noopener noreferrer"
+        id="github-logo"
+      >
+        <img src="./GitHub-Logos/GitHub_Logo.png" alt="GitHub"
+      /></a>
+    </div>
+    <main id="page-wrapper">
+      <div id="emoji-engine">
+        <h3>Emoji Projects 💡</h3>
+        <form class="search-engine"></form>
+        <h4 id="explore">Explore emojis:</h4>
+        <span id="lazy">(find one for me 🔀)</span>
+        <section id="emoji-showcase">
+          <div id="all-emojis"></div>
+        </section>
+      </div>
+      <div id="emoji-result"></div>
+      <span id="rendered-with">Rendered with ReefJS</span>
+    </main>
+  </body>
+</html>
